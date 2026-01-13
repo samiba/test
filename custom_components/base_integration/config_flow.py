@@ -42,8 +42,9 @@ class BaseIntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
 
         if user_input is not None:
+            base_url = _normalize_base_url(user_input[CONF_HOST])
             # Use host as unique_id so you can't add duplicates.
-            await self.async_set_unique_id(user_input[CONF_HOST])
+            await self.async_set_unique_id(base_url)
             self._abort_if_unique_id_configured()
 
             try:
@@ -54,7 +55,9 @@ class BaseIntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 errors["base"] = "unknown"
             else:
                 title = user_input.get(CONF_NAME) or DEFAULT_NAME
-                return self.async_create_entry(title=title, data=user_input)
+                data = dict(user_input)
+                data[CONF_HOST] = base_url
+                return self.async_create_entry(title=title, data=data)
 
         schema = vol.Schema(
             {

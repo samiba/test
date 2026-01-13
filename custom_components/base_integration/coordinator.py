@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from datetime import timedelta
 from typing import Any
 
@@ -29,7 +30,7 @@ class BaseIntegrationDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]
 
         super().__init__(
             hass,
-            logger=__import__("logging").getLogger(__name__),
+            logger=logging.getLogger(__name__),
             name=DOMAIN,
             update_interval=timedelta(seconds=DEFAULT_POLL_INTERVAL_SECONDS),
         )
