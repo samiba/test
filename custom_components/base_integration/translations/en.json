@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Base Integration",
+        "description": "Set up Base Integration by providing connection details.",
+        "data": {
+          "name": "Name",
+          "host": "Host or base URL",
+          "api_key": "API key (optional)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "Device is already configured."
+    }
+  }
+}

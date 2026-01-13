@@ -1,0 +1,12 @@
+{
+  "domain": "base_integration",
+  "name": "Base Integration",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/samiba/test",
+  "issue_tracker": "https://github.com/samiba/test/issues",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "requirements": [],
+  "version": "0.1.0"
+}
