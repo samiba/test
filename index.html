@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Stats Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">Football Stats Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#standings" class="active">Standings</a></li>
+                <li><a href="#players">Top Players</a></li>
+                <li><a href="#matches">Matches</a></li>
+                <li><a href="#stats">Statistics</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Ultimate Football Statistics Destination</h1>
+                <p>Track live scores, player stats, team standings, and match results from top leagues around the world.</p>
+                <div class="hero-buttons">
+                    <a href="#standings" class="btn btn-primary">View Standings</a>
+                    <a href="#matches" class="btn btn-secondary">Live Matches</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="teamsCount">20</span>
+                    <span class="stat-label">Teams</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="matchesCount">380</span>
+                    <span class="stat-label">Matches</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="goalsCount">1024</span>
+                    <span class="stat-label">Goals</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="standings" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>League Standings</h2>
+                    <div class="league-selector">
+                        <button class="league-btn active" data-league="premier">Premier League</button>
+                        <button class="league-btn" data-league="laliga">La Liga</button>
+                        <button class="league-btn" data-league="bundesliga">Bundesliga</button>
+                        <button class="league-btn" data-league="seriea">Serie A</button>
+                    </div>
+                </div>
+                <div class="standings-table-wrapper">
+                    <table class="standings-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>GD</th>
+                                <th>Pts</th>
+                                <th>Form</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standingsBody">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="players" class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Top Players</h2>
+                    <div class="stat-filter">
+                        <button class="filter-btn active" data-stat="goals">Goals</button>
+                        <button class="filter-btn" data-stat="assists">Assists</button>
+                        <button class="filter-btn" data-stat="rating">Rating</button>
+                    </div>
+                </div>
+                <div class="players-grid" id="playersGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="matches" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recent Matches</h2>
+                    <div class="match-filter">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="live">Live</button>
+                        <button class="filter-btn" data-filter="finished">Finished</button>
+                        <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                    </div>
+                </div>
+                <div class="matches-list" id="matchesList">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Season Statistics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-box-icon">⚽</div>
+                        <div class="stat-box-content">
+                            <span class="stat-box-number" id="totalGoals">1,024</span>
+                            <span class="stat-box-label">Total Goals</span>
+                        </div>
+                        <div class="stat-box-trend up">+12%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-icon">🎯</div>
+                        <div class="stat-box-content">
+                            <span class="stat-box-number" id="avgGoals">2.7</span>
+                            <span class="stat-box-label">Goals per Match</span>
+                        </div>
+                        <div class="stat-box-trend up">+5%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-icon">🟨</div>
+                        <div class="stat-box-content">
+                            <span class="stat-box-number" id="yellowCards">892</span>
+                            <span class="stat-box-label">Yellow Cards</span>
+                        </div>
+                        <div class="stat-box-trend down">-3%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-icon">🟥</div>
+                        <div class="stat-box-content">
+                            <span class="stat-box-number" id="redCards">42</span>
+                            <span class="stat-box-label">Red Cards</span>
+                        </div>
+                        <div class="stat-box-trend down">-8%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-icon">🧤</div>
+                        <div class="stat-box-content">
+                            <span class="stat-box-number" id="cleanSheets">156</span>
+                            <span class="stat-box-label">Clean Sheets</span>
+                        </div>
+                        <div class="stat-box-trend up">+7%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-box-icon">👥</div>
+                        <div class="stat-box-content">
+                            <span class="stat-box-number" id="avgAttendance">38.5K</span>
+                            <span class="stat-box-label">Avg. Attendance</span>
+                        </div>
+                        <div class="stat-box-trend up">+15%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Stay Updated with Football Stats</h2>
+                    <p>Get the latest scores, stats, and highlights delivered to your inbox.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">⚽</span>
+                        <span class="logo-text">Football Stats Hub</span>
+                    </div>
+                    <p>Your ultimate destination for football statistics, live scores, and match insights.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#standings">Standings</a></li>
+                        <li><a href="#players">Players</a></li>
+                        <li><a href="#matches">Matches</a></li>
+                        <li><a href="#stats">Statistics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Leagues</h4>
+                    <ul>
+                        <li><a href="#">Premier League</a></li>
+                        <li><a href="#">La Liga</a></li>
+                        <li><a href="#">Bundesliga</a></li>
+                        <li><a href="#">Serie A</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Football Stats Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
