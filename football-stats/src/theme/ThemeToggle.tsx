@@ -1,5 +1,5 @@
 import { LaptopMinimal, Moon, Sun } from 'lucide-react'
-import { useTheme } from './ThemeProvider'
+import { useTheme } from './ThemeContext'
 import clsx from 'clsx'
 
 const options = [

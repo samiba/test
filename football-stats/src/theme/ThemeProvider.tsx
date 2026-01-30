@@ -6,14 +6,7 @@ import {
   setStoredThemePreference,
   type ThemePreference,
 } from './theme'
-
-type ThemeContextValue = {
-  preference: ThemePreference
-  resolved: 'light' | 'dark'
-  setPreference: (pref: ThemePreference) => void
-}
-
-const ThemeContext = React.createContext<ThemeContextValue | null>(null)
+import { ThemeContext } from './ThemeContext'
 
 function computeInitialPreference(): ThemePreference {
   try {
@@ -70,11 +63,5 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       {children}
     </ThemeContext.Provider>
   )
-}
-
-export function useTheme() {
-  const ctx = React.useContext(ThemeContext)
-  if (!ctx) throw new Error('useTheme must be used within ThemeProvider')
-  return ctx
 }
 

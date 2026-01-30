@@ -6,6 +6,37 @@ import { formatDecimal, formatNumber } from '../lib/format'
 type SortKey = 'goals' | 'assists' | 'minutes' | 'xg' | 'name'
 type SortDir = 'asc' | 'desc'
 
+function SortTh({
+  label,
+  sortKey,
+  sortDir,
+  keyName,
+  align = 'left',
+  onToggle,
+}: {
+  label: string
+  sortKey: SortKey
+  sortDir: SortDir
+  keyName: SortKey
+  align?: 'left' | 'right'
+  onToggle: (key: SortKey) => void
+}) {
+  const active = sortKey === keyName
+  const arrow = active ? (sortDir === 'asc' ? ' ↑' : ' ↓') : ''
+  return (
+    <th className={align === 'right' ? 'py-2 text-right' : 'py-2 pr-3'}>
+      <button
+        type="button"
+        onClick={() => onToggle(keyName)}
+        className="font-semibold hover:underline"
+      >
+        {label}
+        {arrow}
+      </button>
+    </th>
+  )
+}
+
 function sortPlayers(rows: Player[], key: SortKey, dir: SortDir) {
   const mult = dir === 'asc' ? 1 : -1
   return rows.slice().sort((a, b) => {
@@ -47,33 +78,6 @@ export function PlayersPage() {
     }
   }
 
-  const SortTh = ({
-    label,
-    keyName,
-    align = 'left',
-  }: {
-    label: string
-    keyName: SortKey
-    align?: 'left' | 'right'
-  }) => {
-    const active = sortKey === keyName
-    const arrow = active ? (sortDir === 'asc' ? ' ↑' : ' ↓') : ''
-    return (
-      <th
-        className={align === 'right' ? 'py-2 text-right' : 'py-2 pr-3'}
-      >
-        <button
-          type="button"
-          onClick={() => toggleSort(keyName)}
-          className="font-semibold hover:underline"
-        >
-          {label}
-          {arrow}
-        </button>
-      </th>
-    )
-  }
-
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -110,14 +114,45 @@ export function PlayersPage() {
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead className="text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               <tr className="border-b border-zinc-200 dark:border-zinc-800">
-                <SortTh label="Player" keyName="name" />
+                <SortTh
+                  label="Player"
+                  keyName="name"
+                  sortKey={sortKey}
+                  sortDir={sortDir}
+                  onToggle={toggleSort}
+                />
                 <th className="py-2 pr-3">Team</th>
                 <th className="py-2 pr-3">Pos</th>
                 <th className="py-2 pr-3">Nation</th>
-                <SortTh label="Min" keyName="minutes" />
-                <SortTh label="G" keyName="goals" />
-                <SortTh label="A" keyName="assists" />
-                <SortTh label="xG" keyName="xg" align="right" />
+                <SortTh
+                  label="Min"
+                  keyName="minutes"
+                  sortKey={sortKey}
+                  sortDir={sortDir}
+                  onToggle={toggleSort}
+                />
+                <SortTh
+                  label="G"
+                  keyName="goals"
+                  sortKey={sortKey}
+                  sortDir={sortDir}
+                  onToggle={toggleSort}
+                />
+                <SortTh
+                  label="A"
+                  keyName="assists"
+                  sortKey={sortKey}
+                  sortDir={sortDir}
+                  onToggle={toggleSort}
+                />
+                <SortTh
+                  label="xG"
+                  keyName="xg"
+                  align="right"
+                  sortKey={sortKey}
+                  sortDir={sortDir}
+                  onToggle={toggleSort}
+                />
               </tr>
             </thead>
             <tbody>
